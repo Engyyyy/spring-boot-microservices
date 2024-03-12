@@ -1,6 +1,7 @@
 package com.top10moviesservice.resources;
 
 import com.top10moviesservice.models.Movie;
+import com.top10moviesservice.models.RatedMovie;
 import com.top10moviesservice.services.TopRatingService;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class TrendingMoviesResource {
      * @return CatalogItem that contains name, description and rating
      */
     @RequestMapping("/top-10-ratings")
-    public List<Movie> getTop10MoviesByRating() {
+    public List<RatedMovie> getTop10MoviesByRating() {
         return topRatingService.getTop10Movies();
     }
 }

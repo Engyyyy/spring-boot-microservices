@@ -4,21 +4,17 @@ option java_multiple_files = true;
 
 option java_package = "com.top10moviesservice.proto";
 
-message Movie {
+message Top10MoviesRequest {
+
+}
+
+message Top10MoviesResponse {
     string id = 1;
     string name = 2;
     string description = 3;
     double rating = 4; 
 }
 
-message Top10MoviesRequest {
-
-}
-
-message Top10MoviesResponse {
-    repeated Movie movies = 1;
-}
-
 service TrendingMovies {
-    rpc GetTop10Movies(Top10MoviesRequest) returns (Top10MoviesResponse);
+    rpc GetTop10Movies(Top10MoviesRequest) returns (stream Top10MoviesResponse) {}
 }

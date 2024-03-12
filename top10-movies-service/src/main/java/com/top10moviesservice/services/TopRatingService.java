@@ -4,6 +4,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.top10moviesservice.models.TopRatings;
 import com.top10moviesservice.models.Movie;
+import com.top10moviesservice.models.RatedMovie;
 import com.top10moviesservice.models.Rating;
 
 import org.springframework.stereotype.Service;
@@ -70,12 +71,12 @@ public class TopRatingService {
         return movie;
     }
 
-    public List<Movie> getTop10Movies() {
+    public List<RatedMovie> getTop10Movies() {
         TopRatings topRatings = this.getTopRating();
-        List<Movie> topRated = new ArrayList<>();
+        List<RatedMovie> topRated = new ArrayList<>();
         for(Rating top : topRatings.getTopRated()) {
             Movie movie = this.getMovieInfo(top.getMovieId());
-            topRated.add(movie);
+            topRated.add(new RatedMovie(movie.getMovieId(), movie.getName(), movie.getDescription(), top.getRating()));
         }
         return topRated;
     }

@@ -36,5 +36,11 @@ public class RatingsResource {
 
         return new UserRating(ratings);
     }
+
+    @RequestMapping("/top")
+    public MovieRatings getTopRatings() {
+        List<IMovieRating> ls = ratingsRepository.findTopRatings();
+        return new MovieRatings(ls);
+    }
 }
 
